@@ -1,4 +1,3 @@
-import os
 import streamlit as st
 from langchain_openai import ChatOpenAI
 
@@ -10,7 +9,7 @@ if st.button("시 작성"):
     with st.spinner("시 작성 중..."):
         chat_model = ChatOpenAI(
             model="gpt-3.5-turbo",
-            api_key=os.environ.get("OPENAI_API_KEY")
+            api_key=st.secrets["OPENAI_API_KEY"]
         )
         result = chat_model.invoke(subject + "에 대한 시를 써줘")
         st.write(result.content)
